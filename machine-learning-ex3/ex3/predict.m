@@ -1,4 +1,4 @@
-function p = predict(Theta1, Theta2, X)
+function [p, a1] = predict(Theta1, Theta2, X)
 %PREDICT Predict the label of an input given a trained neural network
 %   p = PREDICT(Theta1, Theta2, X) outputs the predicted label of X given the
 %   trained weights of a neural network (Theta1, Theta2)
@@ -21,12 +21,15 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
-
-
-
-
-
-
+% Add intercept term to X
+% ones(size(b, 1), 1)
+a1 = [ones(m, 1) X];
+z2 = a1 * Theta1';
+a2 = sigmoid(z2);
+a2 = [ones(size(a2, 1), 1) a2];
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
+[v,p] = max(a3,[],2)
 
 
 % =========================================================================
