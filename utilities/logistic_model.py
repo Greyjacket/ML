@@ -1,4 +1,3 @@
-import copy
 import math
 import numpy as np
 
@@ -15,7 +14,8 @@ class LogisticClassifier:
     def sigmoid(self, x):
         
         if self.using_one_hot:
-            z = float(x)
+            #z = float(x)
+            z = x.astype('float')
         else:
             z = np.clip(x, -500, 500)
             
